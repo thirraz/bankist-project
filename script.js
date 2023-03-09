@@ -108,6 +108,7 @@ logo.classList.contains("c")
 location.className = "jonas"
  */
 
+// SCROLLING
 const btnScrollTo = document.querySelector(".btn--scroll-to")
 
 const section1 = document.querySelector("#section--1")
@@ -128,11 +129,26 @@ btnScrollTo.addEventListener("click", function (e) {
 	// Scrolling					x-coord				y-coord
 	// window.scrollTo(s1coords.left + window.pageXOffset, s1coords.top + window.pageYOffset)
 
-	/* window.scrollTo({
+	window.scrollTo({
 		left: s1coords.left + window.pageXOffset,
 		top: s1coords.top + window.pageYOffset,
 		behavior: "smooth"
-	}) */
+	})
 
 	section1.scrollIntoView({ behavior: "smooth" })
 })
+/* 
+const h1 = document.querySelector("h1")
+
+const alertH1 = (e) => {
+	alert("Event activated!")
+}
+
+// h1.onmouseenter = (e) => {
+// 	alert("Event activated!")
+// }
+
+h1.addEventListener("mouseenter", alertH1)
+
+setTimeout(() => h1.removeEventListener("mouseenter", alertH1), 3000)
+ */
