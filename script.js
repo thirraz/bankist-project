@@ -2,7 +2,8 @@
 
 ///////////////////////////////////////
 // Modal window
-
+const btnScrollTo = document.querySelector(".btn--scroll-to")
+const section1 = document.querySelector("#section--1")
 const modal = document.querySelector(".modal")
 const overlay = document.querySelector(".overlay")
 const btnCloseModal = document.querySelector(".btn--close-modal")
@@ -28,6 +29,9 @@ document.addEventListener("keydown", function (e) {
 		closeModal()
 	}
 })
+
+/////////////////////////////////////////////////////////////////////////////////////
+// Page navigation
 
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -108,10 +112,7 @@ logo.classList.contains("c")
 location.className = "jonas"
  */
 
-// SCROLLING
-const btnScrollTo = document.querySelector(".btn--scroll-to")
-
-const section1 = document.querySelector("#section--1")
+// BUTTON SCROLLING
 
 btnScrollTo.addEventListener("click", function (e) {
 	const s1coords = section1.getBoundingClientRect()
@@ -152,3 +153,29 @@ h1.addEventListener("mouseenter", alertH1)
 
 setTimeout(() => h1.removeEventListener("mouseenter", alertH1), 3000)
  */
+
+const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+
+const randomColor = () => {
+	return `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)},${randomInt(0, 255)})`
+}
+
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+	this.style.backgroundColor = randomColor()
+	console.log("CONTAINER", e.target, e.currentTarget)
+})
+document.querySelector(".nav__link").addEventListener("click", function (e) {
+	this.style.backgroundColor = randomColor()
+	console.log("LINK", e.target, e.currentTarget)
+
+	// Stop propagation
+	e.stopPropagation()
+})
+document.querySelector(".nav").addEventListener(
+	"click",
+	function (e) {
+		this.style.backgroundColor = randomColor()
+		console.log("NAV", e.target, e.currentTarget)
+	},
+	true
+)
