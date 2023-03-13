@@ -58,15 +58,6 @@ btnScrollTo.addEventListener("click", function (e) {
 /////////////////////////////////////////////////////////////////////////////////////
 // Page navigation
 
-// document.querySelectorAll(".nav__link").forEach(function (el) {
-// 	el.addEventListener("click", function (e) {
-// 		e.preventDefault()
-// 		const id = this.getAttribute("href")
-// 		console.log(id)
-// 		document.querySelector(id).scrollIntoView({ behavior: "smooth" })
-// 	})
-// })
-
 // 1. Add event listener to common parent element
 // 2. Determine what element originated the event
 document.querySelector(".nav__links").addEventListener("click", function (e) {
@@ -80,8 +71,42 @@ document.querySelector(".nav__links").addEventListener("click", function (e) {
 	}
 })
 
+// document.querySelectorAll(".nav__link").forEach(function (el) {
+// 	el.addEventListener("click", function (e) {
+// 		e.preventDefault()
+// 		const id = this.getAttribute("href")
+// 		console.log(id)
+// 		document.querySelector(id).scrollIntoView({ behavior: "smooth" })
+// 	})
+// })
+
 /////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
+// Tabbed Component
+const tabsContainer = document.querySelector(".operations__tab-container")
+const tabs = document.querySelectorAll(".operations__tab")
+const tabsContent = document.querySelectorAll(".operations__content")
+
+tabsContainer.addEventListener("click", function (e) {
+	const clicked = e.target.closest(".operations__tab")
+
+	// Guard clause
+	if (!clicked) return
+
+	// Remove active classes
+	tabs.forEach((tab) => tab.classList.remove("operations__tab--active"))
+	tabsContent.forEach((content) =>
+	content.classList.remove("operations__content--active")
+	)
+	// Active tab
+	clicked.classList.add("operations__tab--active")
+
+	// Activate content area
+	console.log(clicked.dataset.tab)
+	document
+		.querySelector(`.operations__content--${clicked.dataset.tab}`)
+		.classList.add("operations__content--active")
+})
+
 /* 
 console.log(document.documentElement)
 console.log(document.head)
@@ -205,7 +230,7 @@ setTimeout(() => h1.removeEventListener("mouseenter", alertH1), 3000)
 // 	},
 // 	true
 // )
-
+/* 
 // DOM TRAVERSING
 const h1 = document.querySelector("h1")
 
@@ -222,8 +247,9 @@ console.log("PARENTS")
 console.log(h1.parentNode)
 console.log(h1.parentElement)
 h1.closest(".header").style.background = "var(--gradient-secondary)"
-h1.closest("h1").style.background = "red" /* the element itself- */
-
+h1.closest("h1").style.background = "red" /* the element itself-
+ */
+/*  
 // Going sideways: siblings
 console.log("SIBLINGS")
 console.log(h1.previousElementSibling)
@@ -236,3 +262,4 @@ for (let el of childrens){
 	console.log(el)
 	if(el !== h1) el.style.transform = 'scale(0.5)'
 }
+*/
